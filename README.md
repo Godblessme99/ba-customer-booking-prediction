@@ -128,3 +128,55 @@ These features suggest that customers who plan their trips earlier, travel longe
 
 This insight can help airlines target high-intent customers earlier and personalise marketing strategies.
 
+## Model Output
+
+The trained machine learning model is saved locally using **joblib**.
+
+During training, the model is exported to the `outputs/` directory:
+
+```python
+joblib.dump(model, "../outputs/booking_model.pkl")
+```
+
+Due to GitHub's file size limitations, the trained model file is **not stored in the repository**.
+The `outputs/` directory is excluded from version control using `.gitignore`.
+
+---
+
+## How to Reproduce the Model
+
+To regenerate the trained model:
+
+1. Clone the repository
+
+```
+git clone https://github.com/Godblessme99/ba-customer-booking-prediction.git
+```
+
+2. Navigate to the project folder
+
+```
+cd ba-customer-booking-prediction
+```
+
+3. Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+4. Run the training notebook
+
+Open the notebook:
+
+```
+notebooks/01_eda.ipynb
+```
+
+Run all cells to train the model and save it to:
+
+```
+outputs/booking_model.pkl
+```
+
+This will recreate the trained model locally.
