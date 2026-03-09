@@ -109,4 +109,22 @@ Customers planning trips earlier, travelling longer, and selecting additional se
 
 ## Author
 
-Taofiq
+Mustapha Adeyemo
+
+
+
+
+## Model Insight
+
+The most important factors influencing customer booking behaviour were:
+
+* Purchase lead time
+* Flight hour
+* Length of stay
+* Flight duration
+* Number of passengers
+
+These features suggest that customers who plan their trips earlier, travel longer distances, or select additional services are more likely to complete bookings.
+
+This insight can help airlines target high-intent customers earlier and personalise marketing strategies.
+
