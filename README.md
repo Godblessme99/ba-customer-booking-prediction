@@ -117,7 +117,9 @@ precision    recall  f1-score   support
 1       0.49      0.11      0.18      1496
 ```
 
-The model predicts non-bookings well but has difficulty detecting completed bookings due to **class imbalance**.
+The model predicts n
+
+![Feature Importance](images/feature_importance.png)on-bookings well but has difficulty detecting completed bookings due to **class imbalance**.
 
 ---
 
