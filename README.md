@@ -1,182 +1,215 @@
-# British Airways Customer Booking Prediction
-
-## Project Overview
-
-This project was developed as part of the **British Airways Data Science Virtual Experience Program**.
-
-The objective was to build a machine learning model capable of predicting whether a customer will complete a flight booking based on behavioural data.
-
-By identifying patterns in customer behaviour, airlines can proactively target high-intent customers before travel.
-
----
-
-## Dataset
-
-The dataset contains **50,000 customer booking records** with **13 behavioural features**.
-
-Examples of features include:
-
-* purchase lead time
-* number of passengers
-* flight hour
-* length of stay
-* route
-* booking origin
-* ancillary services (meals, baggage, seat preference)
-
-Target variable:
-
-```
-booking_complete
-```
-
-Class distribution:
-
-* 15% completed bookings
-* 85% non-bookings
-
----
-
-## Project Workflow
-
-### 1. Exploratory Data Analysis
-
-Initial exploration included:
-
-* dataset structure inspection
-* distribution analysis
-* feature relationships
-
-### 2. Data Preparation
-
-* feature/target separation
-* categorical encoding using OneHotEncoder
-* train/test split (80/20)
-
-### 3. Machine Learning Model
-
-A **Random Forest Classifier** was trained using a Scikit-Learn pipeline.
-
-Reasons for choosing Random Forest:
-
-* handles mixed feature types well
-* robust to feature interactions
-* provides interpretable feature importance
-
----
-
-## Model Performance
-
-Accuracy: **85%**
-
-Because the dataset is highly imbalanced:
-
-* Precision (booking class): **0.49**
-* Recall (booking class): **0.11**
-
-The model predicts non-bookers well but struggles to detect booking customers.
-
-Future improvements could include:
-
-* class balancing techniques
-* additional behavioural features
-* hyperparameter tuning
-
----
-
-## Key Insights
-
-The most influential variables were:
-
-1. purchase lead time
-2. flight hour
-3. length of stay
-4. flight duration
-5. number of passengers
-
-Customers planning trips earlier, travelling longer, and selecting additional services show stronger booking intent.
-
----
-
-## Technologies UseMustapha Adeyemo Python
-* Pandas
-* Scikit-Learn
-* Matplotlib
-* Jupyter Notebook
-* Git & GitHub
-
----
-
-## Author
-
-Mustapha Adeyemo
-
-
-
-
-## Model Insight
-
-The most important factors influencing customer booking behaviour were:
-
-* Purchase lead time
-* Flight hour
-* Length of stay
-* Flight duration
-* Number of passengers
-
-These features suggest that customers who plan their trips earlier, travel longer distances, or select additional services are more likely to complete bookings.
-
-This insight can help airlines target high-intent customers earlier and personalise marketing strategies.
-
-## Model Output
+# British Airways Customer Booking Prediction
 
-The trained machine learning model is saved locally using **joblib**.
+## Project Overview
 
-During training, the model is exported to the `outputs/` directory:
+This project builds a **machine learning model to predict whether a customer will complete a flight booking** based on their booking behaviour.
 
-```python
-joblib.dump(model, "../outputs/booking_model.pkl")
-```
+Airlines must increasingly **predict customer intent before the travel date** so they can target marketing and optimise revenue strategies.
 
-Due to GitHub's file size limitations, the trained model file is **not stored in the repository**.
-The `outputs/` directory is excluded from version control using `.gitignore`.
+Using customer booking data, we trained a **Random Forest classification model** to predict booking completion.
 
 ---
 
-## How to Reproduce the Model
+# Objective
 
-To regenerate the trained model:
+Predict whether a customer will complete a booking using behavioural and booking features.
 
-1. Clone the repository
+Target variable:
+
+`booking_complete`
+
+* 0 → customer did not complete booking
+* 1 → customer completed booking
+
+---
+
+# Dataset
+
+The dataset contains customer booking behaviour including:
+
+* number of passengers
+* purchase lead time
+* length of stay
+* flight hour
+* route
+* booking origin
+* additional services requested
+* flight duration
+
+These features help identify patterns that influence booking completion.
+
+---
+
+# Project Structure
 
 ```
-git clone https://github.com/Godblessme99/ba-customer-booking-prediction.git
+ba-customer-booking-prediction
+│
+├── data/
+│   └── raw/
+│       └── customer_booking.csv
+│
+├── notebooks/
+│   └── 01_eda.ipynb
+│
+├── src/
+│   └── train_model.py
+│
+├── outputs/
+│   └── booking_model.pkl
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
-2. Navigate to the project folder
+---
 
-```
-cd ba-customer-booking-prediction
-```
+# Exploratory Data Analysis
 
-3. Install dependencies
-
-```
-pip install -r requirements.txt
-```
-
-4. Run the training notebook
-
-Open the notebook:
+The exploratory analysis is located in:
 
 ```
 notebooks/01_eda.ipynb
 ```
 
-Run all cells to train the model and save it to:
+This notebook includes:
+
+* dataset exploration
+* feature inspection
+* preprocessing
+* model training
+* evaluation metrics
+
+---
+
+# Model
+
+Algorithm used:
+
+**Random Forest Classifier**
+
+Reasons for choosing Random Forest:
+
+* handles mixed data types well
+* robust to overfitting
+* provides feature importance
+* strong performance on tabular datasets
+
+---
+
+# Model Performance
+
+Evaluation metrics:
+
+Accuracy:
+
+```
+0.85
+```
+
+Classification Report:
+
+```
+precision    recall  f1-score   support
+
+0       0.86      0.98      0.92      8504
+1       0.49      0.11      0.18      1496
+```
+
+The model predicts non-bookings well but has difficulty detecting completed bookings due to **class imbalance**.
+
+---
+
+# Feature Importance
+
+Key factors influencing booking completion include:
+
+* purchase lead
+* flight hour
+* length of stay
+* flight duration
+* number of passengers
+
+---
+
+# How to Run the Project
+
+Clone the repository:
+
+```
+git clone https://github.com/Godblessme99/ba-customer-booking-prediction.git
+```
+
+Navigate to the project:
+
+```
+cd ba-customer-booking-prediction
+```
+
+Install dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+---
+
+# Train the Model
+
+Run the training script:
+
+```
+python src/train_model.py
+```
+
+The trained model will be saved to:
 
 ```
 outputs/booking_model.pkl
 ```
+
+---
+
+# Model Output
+
+The trained model is exported using **joblib**.
+
+```
+joblib.dump(model, "../outputs/booking_model.pkl")
+```
+
+The outputs folder is excluded from version control due to file size limitations.
+
+---
+
+# Business Insight
+
+Key findings:
+
+* Customers booking further in advance are more likely to complete bookings
+* Flight time and duration influence purchase behaviour
+* Ancillary services (meals, baggage) correlate with booking completion
+
+These insights help airlines improve **marketing targeting and demand forecasting**.
+
+---
+
+# Future Improvements
+
+PMustapha Adeyemoossible improvements:
+
+* address class imbalance using SMOTE or class weighting
+* hyperparameter tuning
+* deploy the model as a prediction API
+* build a dashboard for airline analysts
+
+---
+
+# Author
+
+Machine Learning Project
+British Airways Data Science Simulation
+`
 
 This will recreate the trained model locally.
